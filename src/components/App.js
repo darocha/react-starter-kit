@@ -7,12 +7,17 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const ContextType = {
   // Enables critical path CSS rendering
   // https://github.com/kriasoft/isomorphic-style-loader
   insertCss: PropTypes.func.isRequired,
+  // Universal HTTP client
+  fetch: PropTypes.func.isRequired,
+  pathname: PropTypes.string.isRequired,
+  query: PropTypes.object,
 };
 
 /**
@@ -38,7 +43,6 @@ const ContextType = {
  *   );
  */
 class App extends React.PureComponent {
-
   static propTypes = {
     context: PropTypes.shape(ContextType).isRequired,
     children: PropTypes.element.isRequired,
@@ -55,7 +59,6 @@ class App extends React.PureComponent {
     // please do that inside the Layout component.
     return React.Children.only(this.props.children);
   }
-
 }
 
 export default App;
